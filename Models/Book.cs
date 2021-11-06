@@ -14,7 +14,7 @@ namespace Livia_Bud_Lab8.Models
         [Required, StringLength(150, MinimumLength = 3)]
         [Display(Name = "Book Title")]
         public string Title { get; set; }
-        //[RegularExpression(@"^[A-Z][a-z]+\s[A-Z][a-z]+$", ErrorMessage = "Numele autorului trebuie sa fie de forma 'Prenume Nume'"), Required, StringLength(50, MinimumLength = 3)]
+        [RegularExpression(@"^[A-Z][a-z]+\s[A-Z][a-z]+$", ErrorMessage = "Numele autorului trebuie sa fie de forma 'Prenume Nume'"), Required, StringLength(50, MinimumLength = 3)]
         ////^ marcheaza inceputul sirului de caractere
         ////[A-Z][a-z]+ prenumele -litera mare urmata de oricate litere mici
         ////\s spatiu
