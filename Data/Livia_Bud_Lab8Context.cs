@@ -19,5 +19,8 @@ namespace Livia_Bud_Lab8.Data
         public DbSet<Livia_Bud_Lab8.Models.Publisher> Publisher { get; set; }
 
         public DbSet<Livia_Bud_Lab8.Models.BookCategory> BookCategory { get; set; }
+
+        public DbSet<Livia_Bud_Lab8.Models.Category> Category { get; set; }
+
     }
 }

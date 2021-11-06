@@ -19,7 +19,7 @@ namespace Livia_Bud_Lab8.Pages.Categories
             _context = context;
         }
 
-        public BookCategory BookCategory { get; set; }
+        public Category Category { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,11 +28,9 @@ namespace Livia_Bud_Lab8.Pages.Categories
                 return NotFound();
             }
 
-            BookCategory = await _context.BookCategory
-                .Include(b => b.Book)
-                .Include(b => b.Category).FirstOrDefaultAsync(m => m.ID == id);
+            Category = await _context.Category.FirstOrDefaultAsync(m => m.ID == id);
 
-            if (BookCategory == null)
+            if (Category == null)
             {
                 return NotFound();
             }

@@ -21,13 +21,11 @@ namespace Livia_Bud_Lab8.Pages.Categories
 
         public IActionResult OnGet()
         {
-        ViewData["BookID"] = new SelectList(_context.Book, "ID", "ID");
-        ViewData["CategoryID"] = new SelectList(_context.Set<Category>(), "ID", "ID");
             return Page();
         }
 
         [BindProperty]
-        public BookCategory BookCategory { get; set; }
+        public Category Category { get; set; }
 
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://aka.ms/RazorPagesCRUD.
@@ -38,7 +36,7 @@ namespace Livia_Bud_Lab8.Pages.Categories
                 return Page();
             }
 
-            _context.BookCategory.Add(BookCategory);
+            _context.Category.Add(Category);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

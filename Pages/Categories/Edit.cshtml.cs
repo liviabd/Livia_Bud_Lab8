@@ -21,7 +21,7 @@ namespace Livia_Bud_Lab8.Pages.Categories
         }
 
         [BindProperty]
-        public BookCategory BookCategory { get; set; }
+        public Category Category { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -30,16 +30,12 @@ namespace Livia_Bud_Lab8.Pages.Categories
                 return NotFound();
             }
 
-            BookCategory = await _context.BookCategory
-                .Include(b => b.Book)
-                .Include(b => b.Category).FirstOrDefaultAsync(m => m.ID == id);
+            Category = await _context.Category.FirstOrDefaultAsync(m => m.ID == id);
 
-            if (BookCategory == null)
+            if (Category == null)
             {
                 return NotFound();
             }
-           ViewData["BookID"] = new SelectList(_context.Book, "ID", "ID");
-           ViewData["CategoryID"] = new SelectList(_context.Set<Category>(), "ID", "ID");
             return Page();
         }
 
@@ -52,7 +48,7 @@ namespace Livia_Bud_Lab8.Pages.Categories
                 return Page();
             }
 
-            _context.Attach(BookCategory).State = EntityState.Modified;
+            _context.Attach(Category).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +56,7 @@ namespace Livia_Bud_Lab8.Pages.Categories
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!BookCategoryExists(BookCategory.ID))
+                if (!CategoryExists(Category.ID))
                 {
                     return NotFound();
                 }
@@ -73,9 +69,9 @@ namespace Livia_Bud_Lab8.Pages.Categories
             return RedirectToPage("./Index");
         }
 
-        private bool BookCategoryExists(int id)
+        private bool CategoryExists(int id)
         {
-            return _context.BookCategory.Any(e => e.ID == id);
+            return _context.Category.Any(e => e.ID == id);
         }
     }
 }
